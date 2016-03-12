@@ -24,7 +24,7 @@ export class AppComponent {
     }
     
     public addRow() {
-        this.rows.push({team1: 'j', team2: 'd', task: 'f'});
+        this.rows.push({team1: '', team2: '', task: ''});
     }
     
     public removeRow(row:Row) {

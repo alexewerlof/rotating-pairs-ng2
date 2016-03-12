@@ -1,10 +1,17 @@
 <h1>This is a basic Angular {{a}} App</h1>
 <table>
+    <thead>
+        <tr>
+            <th>Team 1</th>
+            <th>Task</th>
+            <th>Team 2</th>
+        </tr>
+    </thead>
     <tr *ngFor="#row of rows">
-        <td>{{row.team1}}</td>
-        <td>{{row.task}}</td>
-        <td>{{row.team2}}</td>
-        <td><button (click)="removeRow(row)">-</button></td>
+        <td><input type="text" [(ngModel)]="row.team1"/></td>
+        <td><input type="text" [(ngModel)]="row.task"/></td>
+        <td><input type="text" [(ngModel)]="row.team2"/></td>
+        <td><button (click)="removeRow(row)" title="Remove row">-</button></td>
     </tr>
 </table>
 <button (click)="addRow()">Add row</button>
