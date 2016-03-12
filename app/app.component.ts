@@ -14,6 +14,7 @@ interface Row {
 })
 export class AppComponent {
     public rows:Row[] = [];
+    public team1Keeps = true;
     
     constructor() {
         try {
@@ -54,5 +55,28 @@ export class AppComponent {
     
     public save() {
         localStorage.setItem(TABLE_STORAGE_KEY, JSON.stringify(this.rows));
+    }
+    
+    private rotateTeam1() {
+        var buffer = this.rows[this.rows.length - 1].team1;
+        for (let i = this.rows.length - 1; i > 0; i--) {
+            this.rows[i].team1 = this.rows[i - 1].team1;
+        }
+        this.rows[0].team1 = buffer;
+    }
+
+    private rotateTeam2() {
+        var buffer = this.rows[0].team2;
+        for (let i = 0; i < this.rows.length - 1; i++) {
+            this.rows[i].team2 = this.rows[i + 1].team2;
+        }
+        this.rows[this.rows.length - 1].team2 = buffer;
+    }
+    
+    public rotate() {
+        if ( this.rows.length > 1) {
+            this.team1Keeps ? this.rotateTeam2() : this.rotateTeam1();
+        }
+        this.team1Keeps = !this.team1Keeps;
     }
 }
